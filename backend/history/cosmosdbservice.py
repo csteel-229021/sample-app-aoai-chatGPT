@@ -95,7 +95,7 @@ class CosmosConversationClient():
                 'value': user_id
             }
         ]
-        query = f"SELECT * FROM c where c.userId = @userId and c.type='conversation' order by c.updatedAt {sort_order}"
+        query = ("SELECT * FROM c where c.userId = @userId and c.type='conversation' order by c.updatedAt %s", sort_order)
         if limit is not None:
             query += f" offset {offset} limit {limit}" 
         
